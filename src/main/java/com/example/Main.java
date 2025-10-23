@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
 
@@ -125,6 +126,29 @@ public class Main {
          * ingresos mensuales).
          */
 
+        Scanner sc = new Scanner(System.in);
+
+        double credito = 0;
+
+        System.out.println("ingrese sus ingresos mensuales: ");
+        double cliente = sc.nextDouble();
+
+        System.out.println("ingrese su edad: ");
+        int edad = sc.nextInt();
+
+        System.out.print("Ingrese sus gastos mensuales: ");
+        double gastos = sc.nextDouble();
+
+        if (cliente >= 2000000 && edad >= 18 && edad <= 65 && gastos <= cliente * 0.7) {
+            System.out.println("es apto para el credito ");
+            credito = cliente * 5;
+            System.out.printf("💰 Su crédito máximo es de: $%,.0f%n", credito); // se le pone el printf para darle
+                                                                                // formato y el $%,.0f%n"
+
+        } else {
+            System.out.println("no cumple con los requisitos");
+        }
+
     }
 
     public static void ejercicio3() {
@@ -230,6 +254,39 @@ public class Main {
          * adicionales. Simula el estado de 5 vuelos en un día con condiciones
          * climáticas variables.
          */
+
+        Random random = new Random();
+
+        boolean malClima = random.nextBoolean(); // true = mal clima, false = clima bueno
+        System.out.println("Clima del día: " + (malClima ? "Malo" : "Bueno"));
+
+        // Simular 5 vuelos
+        for (int i = 1; i <= 5; i++) {
+            int retraso = random.nextInt(45);
+
+            // suma mas 30 en caso de mal clima
+            if (malClima == true) {
+                retraso += 30;
+            }
+
+            String estado = "";
+            if (malClima == true || malClima == false) {
+
+                if (retraso < 15) {
+                    estado = "a tiempo";
+                } else if (retraso > 15) {
+                    estado = "leve retraso";
+                } else if (retraso > 30) {
+                    estado = "retrasado";
+
+                } else if (retraso >= 45) {
+                    estado = "cancelado";
+                }
+                System.out.println("vuelo" + i + " retraso de " + retraso + " minutos " + estado);
+
+            }
+
+        }
     }
 
     public static void ejercicio6() {
@@ -241,6 +298,19 @@ public class Main {
          * periferia: 45 min, rural: 60 min). Calcula cuántas entregas puede hacer un
          * conductor en un día.
          */
+
+        int conductorTiempo = 480;
+        int centro = 30;
+        int periferia = 45;
+        int rural = 60;
+
+        int entregasCentro = conductorTiempo / centro;
+        System.out.println("entregas en el centro: " + entregasCentro);
+        int entregasPeriferia = conductorTiempo / periferia;
+        System.out.println("entregas posibles en la periferia: " + entregasPeriferia);
+        int entregasRural = conductorTiempo / rural;
+        System.out.println("entregas posibles en la rural: " + entregasRural);
+
     }
 
     public static void ejercicio7() {
