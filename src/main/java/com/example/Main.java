@@ -322,6 +322,30 @@ public class Main {
          * cliente supera 500 calorías quemadas, recibe un bono de 50 puntos. Calcula
          * las calorías totales y puntos ganados.
          */
+        Scanner sc =  new Scanner(System.in);
+
+        System.out.print("Minutos de cardio: ");
+        int cardio = sc.nextInt();
+
+        System.out.print("Minutos de pesas: ");
+        int pesas = sc.nextInt();
+
+        System.out.print("Minutos de yoga: ");
+        int yoga = sc.nextInt();
+
+        // calorías totales
+        int caloriasTotales = (cardio * 10) + (pesas * 8) + (yoga * 5);
+
+        // verificamos si supera las 500 calorías
+        int puntos = 0;
+        if (caloriasTotales > 500) {
+            puntos = 50;
+        }
+
+        System.out.println("Calorías totales quemadas: " + caloriasTotales);
+        System.out.println("Puntos ganados: " + puntos);
+
+         
     }
 
     public static void ejercicio8() {
@@ -332,8 +356,40 @@ public class Main {
          * arterial (>140/90 = urgente), dolor (escala 8-10 = urgente). Clasifica a 5
          * pacientes en: urgente, prioritario, o normal.
          */
-    }
 
+         Scanner sc = new Scanner(System.in);
+
+        // simular los 5 pasientes
+         for (int i = 1; i <= 5; i++) {
+             System.out.println("\nPaciente " + i + ":");
+
+         System.out.println("cual es la temperatura del paciente: ");
+         double temperatura = sc.nextDouble();
+
+         System.out.print("Presión sistólica: ");
+         int presionSistolica = sc.nextInt();
+
+         System.out.print("Presión diastólica: ");
+         int presionDiastolica = sc.nextInt();
+
+         System.out.println("escala del dolor del paciente del 1 al 10 siendo el 10 el maximo dolor: ");
+         int dolor = sc.nextInt();
+
+         // condiciones paciente    
+        String pacientEstado;
+         if (temperatura > 38.5 || presionSistolica >= 140 ||presionDiastolica >= 90 || (dolor >= 8 && dolor <= 10)) {
+            pacientEstado = "urgente";
+            
+         }else if(temperatura > 37.0 || presionSistolica > 130 || presionDiastolica > 80 || (dolor >= 5 && dolor <= 7)){
+            pacientEstado = " prioritario ";
+
+         }else{
+            pacientEstado = "normal";
+         }
+            System.out.println("Clasificación del paciente: " + pacientEstado);
+        } 
+      }
+    
     public static void ejercicio9() {
         System.out.println("Ejercicio 9: Calculadora de Notas y Promedio Estudiantil");
         /*
@@ -385,6 +441,44 @@ public class Main {
          * por 30 minutos. Si llovió en las últimas 24 horas, no se activa el riego.
          * Simula el sistema durante una semana.
          */
+
+          Scanner sc = new Scanner(System.in);
+
+       for (int i = 1; i <= 7; i++) {
+         System.out.println("dia: " + i);
+
+         System.out.print("ha llovido en las ultimas 24 horas, responde si/no: ");
+         String lluvia = sc.nextLine ();
+
+         if (lluvia.equalsIgnoreCase("si")){ 
+            System.out.println("Si llovió en las últimas 24 horas, no se activa el riego.");
+            continue;}
+
+         System.out.println("dame la humedad del suelo: ");
+         int sueloHumedad = sc.nextInt();
+
+         System.out.println("dame la temperatura : ");
+         int sueloTemperatura = sc.nextInt();
+         sc.nextLine();
+
+         // evaluar condiciones 
+         int estado = 0;
+         
+         if (sueloHumedad < 30) {
+            estado = 60;
+            System.out.println("Riego activado por " + estado + " minutos (baja humedad).");
+           
+         } else if(sueloTemperatura > 25 && sueloHumedad < 50){
+            estado = 30;
+            System.out.println("Riego activado por " + estado + " minutos (temperatura alta y humedad moderada).");
+
+         }else{
+             System.out.println("Condiciones normales, no se activa el riego.");
+         }
+         System.out.println(); // salto de línea entre días
+
+         }
+      }
     }
 
-}
+
